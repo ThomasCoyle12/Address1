@@ -26,7 +26,7 @@ export class MyApiStack extends Stack {
       },
     });
 
-    const getAddressesFunction = new Function(this, 'GetAddressFunction', {
+    const getAddressFunction = new Function(this, 'GetAddressFunction', {
       runtime: Runtime.NODEJS_16_X,
       handler: 'index.handler',
       code: Code.fromAsset(path.join(__dirname, '../src/getAddress')),
@@ -36,7 +36,7 @@ export class MyApiStack extends Stack {
     });
 
     userAddressesTable.grantReadWriteData(addAddressFunction);
-    userAddressesTable.grantReadData(getAddressesFunction);
+    userAddressesTable.grantReadData(getAddressFunction);
 
     const api = new RestApi(this, 'UserAddressApi', {
       restApiName: 'User Address Service',
@@ -48,7 +48,7 @@ export class MyApiStack extends Stack {
     });
 
     const userAddresses = addresses.addResource('{userId}');
-    userAddresses.addMethod('GET', new LambdaIntegration(getAddressesFunction), {
+    userAddresses.addMethod('GET', new LambdaIntegration(getAddressFunction), {
       apiKeyRequired: true, 
     });
 
