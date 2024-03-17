@@ -42,3 +42,8 @@ Please follow these steps to inplement this API into AWS profile
     - More error handling for more HTTP codes
     - Potentially add conditional logic for userId as well to search for users with postcode/suburb 
     - More pre-tests before deployment with CI/CD pipeline/Currently only dynamo tested, get/add test would be good
+
+## Production readiness requirements
+    - Security, current vulnerabilities with IAM user access required to run this services, further to this
+      having encrypted user data would be valuable and rotating API keys.
+    - Documentation of API endpoints, request/response formats, error codes
