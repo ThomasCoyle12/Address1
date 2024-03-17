@@ -1,17 +1,11 @@
-// import * as cdk from 'aws-cdk-lib';
-// import { Template } from 'aws-cdk-lib/assertions';
-// import * as MyAddressApi from '../lib/my-address-api-stack';
+import '@aws-cdk/assert/jest';
+import { App } from 'aws-cdk-lib';
+import { MyApiStack } from '../lib/my-address-api-stack';
 
-// example test. To run these tests, uncomment this file along with the
-// example resource in lib/my-address-api-stack.ts
-test('SQS Queue Created', () => {
-//   const app = new cdk.App();
-//     // WHEN
-//   const stack = new MyAddressApi.MyAddressApiStack(app, 'MyTestStack');
-//     // THEN
-//   const template = Template.fromStack(stack);
-
-//   template.hasResourceProperties('AWS::SQS::Queue', {
-//     VisibilityTimeout: 300
-//   });
+test('DynamoDB Table Created', () => {
+  const app = new App();
+  const stack = new MyApiStack(app, 'MyTestStack');
+  expect(stack).toHaveResource('AWS::DynamoDB::Table', {
+    BillingMode: 'PAY_PER_REQUEST',
+  });
 });

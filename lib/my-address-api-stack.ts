@@ -1,16 +1,38 @@
-import * as cdk from 'aws-cdk-lib';
+import { Stack, aws_dynamodb as dynamodb, aws_lambda as lambda, StackProps, RemovalPolicy } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-// import * as sqs from 'aws-cdk-lib/aws-sqs';
+import * as path from 'path';
 
-export class MyAddressApiStack extends cdk.Stack {
-  constructor(scope: Construct, id: string, props?: cdk.StackProps) {
+export class MyApiStack extends Stack {
+  constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
-    // The code that defines your stack goes here
+    const userAddressesTable = new dynamodb.Table(this, 'UserAddresses', {
+      partitionKey: { name: 'userId', type: dynamodb.AttributeType.STRING },
+      sortKey: { name: 'addressId', type: dynamodb.AttributeType.STRING },
+      tableName: 'UserAddresses',
+      billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
+      removalPolicy: RemovalPolicy.DESTROY,
+    });
 
-    // example resource
-    // const queue = new sqs.Queue(this, 'MyAddressApiQueue', {
-    //   visibilityTimeout: cdk.Duration.seconds(300)
-    // });
+    const AddAddressFunction = new lambda.Function(this, 'AddAddressFunction', {
+      runtime: lambda.Runtime.NODEJS_16_X,
+      handler: 'index.handler',
+      code: lambda.Code.fromAsset(path.join(__dirname, '../src/addAddress')),
+      environment: {
+        TABLE_NAME: userAddressesTable.tableName,
+      },
+    });
+
+    const GetAddressFunction = new lambda.Function(this, 'GetAddressFunction', {
+      runtime: lambda.Runtime.NODEJS_16_X,
+      handler: 'index.handler',
+      code: lambda.Code.fromAsset(path.join(__dirname, '../src/getAddress')),
+      environment: {
+        TABLE_NAME: userAddressesTable.tableName,
+      },
+    });
+
+    userAddressesTable.grantReadWriteData(AddAddressFunction);
+    userAddressesTable.grantReadData(GetAddressFunction);
   }
 }
