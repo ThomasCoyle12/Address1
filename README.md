@@ -1,10 +1,10 @@
 # AWS user address service
 
 This is a serverless API to store user addresses and retrieve with
-optinal suburb/post code filtering. This code leverages and is deployed
+optional suburb/post code filtering. This code leverages and is deployed
 via AWS Cloud Development kit (CDK) and Node.js
 
-# How to deploy code repository
+# How to deploy code repository to your AWS
 
 ### Make sure you have the following software installed on your system:
 Git: For cloning and managing versions of the source code.
