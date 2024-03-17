@@ -16,9 +16,6 @@ async function getAddress(event: any) {
     filterExpressions.push('postcode = :postcode');
     expressionAttributeValues[':postcode'] = { S: postcode };
   }
-  
-//Potentially add conditional logic for userId as well to search for users with postcode/suburb
-
   const params: QueryCommandInput = {
     TableName: process.env.TABLE_NAME,
     KeyConditionExpression: 'userId = :userId',

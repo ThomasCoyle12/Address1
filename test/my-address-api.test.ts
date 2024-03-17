@@ -9,4 +9,3 @@ test('DynamoDB Table Created', () => {
     BillingMode: 'PAY_PER_REQUEST',
   });
 });
-// Test for get/add

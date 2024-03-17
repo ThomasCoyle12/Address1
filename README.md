@@ -6,13 +6,13 @@ via AWS Cloud Development kit (CDK) and Node.js
 
 # How to deploy code repository
 
-# Make sure you have the following software installed on your system:
-
+### Make sure you have the following software installed on your system:
 Git: For cloning and managing versions of the source code.
 Node.js: The JavaScript runtime environment.
 npm: The package manager for JavaScript, installed with Node.js.
 AWS CLI: The AWS Command Line Interface to interact with AWS services.
 AWS CDK: The AWS Cloud Development Kit to define cloud resources in code.
+TypeScript: This project is developed using TypeScript and as such required.
 
 Please follow these steps to inplement this API into AWS profile
 
@@ -35,3 +35,10 @@ Please follow these steps to inplement this API into AWS profile
     - git push -u origin main
     - The included CI/CD pipeline (ci.yaml and cd.yaml in the .github/workflows directory) 
       will automatically handle deployment to your AWS account when changes are pushed to the main branch.
+
+## Potential future improvements
+    - More secure endpoints needed with better authorisation
+    - Better data validation required, with clearer messaging
+    - More error handling for more HTTP codes
+    - Potentially add conditional logic for userId as well to search for users with postcode/suburb 
+    - More pre-tests before deployment with CI/CD pipeline/Currently only dynamo tested, get/add test would be good
