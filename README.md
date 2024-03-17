@@ -12,7 +12,8 @@ via AWS Cloud Development kit (CDK) and Node.js
 - npm: The package manager for JavaScript, installed with Node.js.
 - AWS CLI: The AWS Command Line Interface to interact with AWS services.
 - AWS CDK: The AWS Cloud Development Kit to define cloud resources in code.
-- TypeScript: This project is developed using TypeScript and as such required.
+- TypeScript: This project is developed using TypeS
+cript and as such required.
 
 Please follow these steps to inplement this API into AWS profile
 
@@ -47,3 +48,4 @@ Please follow these steps to inplement this API into AWS profile
     - Security, current vulnerabilities with IAM user access required to run this services, further to this
       having encrypted user data would be valuable and rotating API keys.
     - Documentation of API endpoints, request/response formats, error codes
+    - Refactor Functions/stack for more readbility and concise. Focus on more classes in stack for easier modifications
