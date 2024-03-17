@@ -1,9 +1,9 @@
-import { Stack, StackProps, RemovalPolicy } from 'aws-cdk-lib';
+import { Stack, StackProps, RemovalPolicy, CfnOutput } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import * as path from 'path';
 import { Table, AttributeType, BillingMode } from 'aws-cdk-lib/aws-dynamodb';
 import { Function, Runtime, Code } from 'aws-cdk-lib/aws-lambda';
-import { RestApi, LambdaIntegration } from 'aws-cdk-lib/aws-apigateway';
+import { RestApi, LambdaIntegration, UsagePlan, ApiKey } from 'aws-cdk-lib/aws-apigateway';
 
 export class MyApiStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
@@ -43,9 +43,27 @@ export class MyApiStack extends Stack {
     });
 
     const addresses = api.root.addResource('addresses');
-    addresses.addMethod('POST', new LambdaIntegration(addAddressFunction));
+    addresses.addMethod('POST', new LambdaIntegration(addAddressFunction), {
+      apiKeyRequired: true, 
+    });
 
     const userAddresses = addresses.addResource('{userId}');
-    userAddresses.addMethod('GET', new LambdaIntegration(getAddressesFunction));
+    userAddresses.addMethod('GET', new LambdaIntegration(getAddressesFunction), {
+      apiKeyRequired: true, 
+    });
+
+    const apiKey = new ApiKey(this, 'ApiKey', {
+      apiKeyName: 'UserAddressApiKey',
+    });
+
+    const plan = new UsagePlan(this, 'UsagePlan', {
+      name: 'Basic',
+    });
+
+    plan.addApiKey(apiKey);
+
+    new CfnOutput(this, 'ApiKeyOutput', {
+      value: apiKey.keyId,
+    });
   }
 }
