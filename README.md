@@ -7,12 +7,12 @@ via AWS Cloud Development kit (CDK) and Node.js
 # How to deploy code repository to your AWS
 
 ### Make sure you have the following software installed on your system:
-Git: For cloning and managing versions of the source code.
-Node.js: The JavaScript runtime environment.
-npm: The package manager for JavaScript, installed with Node.js.
-AWS CLI: The AWS Command Line Interface to interact with AWS services.
-AWS CDK: The AWS Cloud Development Kit to define cloud resources in code.
-TypeScript: This project is developed using TypeScript and as such required.
+- Git: For cloning and managing versions of the source code.
+- Node.js: The JavaScript runtime environment.
+- npm: The package manager for JavaScript, installed with Node.js.
+- AWS CLI: The AWS Command Line Interface to interact with AWS services.
+- AWS CDK: The AWS Cloud Development Kit to define cloud resources in code.
+- TypeScript: This project is developed using TypeScript and as such required.
 
 Please follow these steps to inplement this API into AWS profile
 
