@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/TomCo/OneDrive/Documents/Programs/C",
-      "program": "c:/Users/TomCo/OneDrive/Documents/Programs/C/build/Debug/outDebug",
+      "cwd": "c:/Users/TomCo/OneDrive/Documents/Task/Address/my-address-api/.vscode",
+      "program": "c:/Users/TomCo/OneDrive/Documents/Task/Address/my-address-api/.vscode/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

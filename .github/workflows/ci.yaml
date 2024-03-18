@@ -1,4 +1,5 @@
 name: CI
+
 on:
   push:
     branches:
@@ -19,8 +20,12 @@ jobs:
     - name: Run tests
       run: npm test
     
-    - name: Synthesize CloudFormation Template (optional)
+    - name: Build project
+      run: npm run build
+    
+    - name: Synthesize CloudFormation Template
       run: cdk synth
     
-    - name: Generate difference report (optional)
+    - name: Generate difference report
       run: cdk diff || true
+
